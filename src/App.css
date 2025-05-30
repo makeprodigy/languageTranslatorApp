@@ -1,42 +1,196 @@
-#root {
-  max-width: 1280px;
+html, body {
+  height: 100%;
+}
+body {
+  background: #181a20;
+  color: #f1f1f1;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.4s;
+}
+
+.translator-container {
+  background: rgba(35, 38, 47, 0.85);
+  color: #f1f1f1;
+  box-shadow: 0 8px 40px #000a, 0 1.5px 0 #7dd3fc44 inset;
+  border-radius: 22px;
+  padding: 2.5rem 2rem 2rem 2rem;
+  max-width: 480px;
+  width: 95vw;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  backdrop-filter: blur(12px) saturate(1.2);
+  border: 1.5px solid #31344b;
+  animation: fadeInUp 0.7s cubic-bezier(.23,1.01,.32,1) both;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
+@keyframes fadeInUp {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(40px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: none;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+h2 {
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  color: #7dd3fc;
+  text-shadow: 0 2px 16px #38bdf866, 0 2px 8px #0004;
+  font-size: 2rem;
 }
 
-.card {
-  padding: 2em;
+.textarea-wrapper {
+  width: 100%;
+  position: relative;
+  display: flex;
 }
 
-.read-the-docs {
+textarea {
+  background: rgba(24, 26, 32, 0.95);
+  color: #f1f1f1;
+  border: 1.5px solid #31344b;
+  border-radius: 14px;
+  padding: 1.1rem 1rem;
+  font-size: 1.13rem;
+  resize: vertical;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 12px #0003;
+  width: 100%;
+  min-height: 90px;
+}
+
+textarea:focus {
+  border-color: #7dd3fc;
+  box-shadow: 0 0 0 3px #7dd3fc33, 0 2px 12px #38bdf822;
+}
+
+.lang-row {
+  display: grid;
+  grid-template-columns: 1fr 32px 1fr;
+  gap: 0.7rem;
+  align-items: center;
+  margin-bottom: 0.2rem;
+}
+
+select {
+  background: rgba(35, 38, 47, 0.95);
+  color: #f1f1f1;
+  border: 1.5px solid #31344b;
+  border-radius: 10px;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px #0002;
+  width: 100%;
+}
+
+select:focus {
+  border-color: #7dd3fc;
+  box-shadow: 0 0 0 2px #7dd3fc44;
+}
+
+.arrow {
+  color: #7dd3fc;
+  font-size: 1.5rem;
+  text-align: center;
+  user-select: none;
+}
+
+button {
+  background: linear-gradient(90deg, #7dd3fc 0%, #38bdf8 100%);
+  color: #181a20;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 0;
+  font-size: 1.13rem;
+  font-weight: 800;
+  cursor: pointer;
+  margin-top: 0.2rem;
+  box-shadow: 0 2px 16px #38bdf822;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  letter-spacing: 0.5px;
+  width: 100%;
+  outline: none;
+}
+
+button:disabled {
+  background: #31344b;
   color: #888;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+button:not(:disabled):hover, button:not(:disabled):focus {
+  background: linear-gradient(90deg, #38bdf8 0%, #7dd3fc 100%);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 4px 32px #38bdf844;
+  outline: none;
+}
+
+.translator-container select, .translator-container textarea, .translator-container button {
+  margin-bottom: 0;
+}
+
+.translator-container > .result {
+  background: rgba(35, 38, 47, 0.98);
+  color: #7dd3fc;
+  border: 1.5px solid #38bdf8;
+  box-shadow: 0 2px 16px #38bdf822;
+  animation: fadeInResult 0.6s cubic-bezier(.23,1.01,.32,1) both;
+  border-radius: 12px;
+  margin-top: 0.7rem;
+  padding: 1.1rem 1rem 0.9rem 1rem;
+  font-size: 1.13rem;
+  font-weight: 500;
+  word-break: break-word;
+  min-height: 40px;
+}
+
+@keyframes fadeInResult {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #23262f;
+}
+::-webkit-scrollbar-thumb {
+  background: #31344b;
+  border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+  .translator-container {
+    padding: 1.2rem 0.5rem 1rem 0.5rem;
+    max-width: 98vw;
+    border-radius: 12px;
+  }
+  h2 {
+    font-size: 1.3rem;
+  }
+  .result {
+    font-size: 1rem;
+    padding: 0.8rem 0.7rem 0.7rem 0.7rem;
+  }
 }
